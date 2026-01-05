@@ -19,8 +19,8 @@ export default function Page() {
     <main className="flex flex-col min-h-[100dvh]">
       {/* SECTION 1: HERO */}
       <section id="hero" className="py-8 md:py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="grid lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-center">
+        <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <div className="grid lg:grid-cols-[380px_1fr] gap-10 lg:gap-16 items-center">
             {/* Profile Section */}
             <BlurFade delay={BLUR_FADE_DELAY}>
               <div className="flex flex-col items-center lg:items-start gap-6 lg:sticky lg:top-8">
@@ -40,7 +40,7 @@ export default function Page() {
                     <p className="text-xs font-bold uppercase tracking-wider">Hamburg</p>
                   </div>
                 </div>
-                <div className="text-center lg:text-left space-y-3 w-full">
+                <div className="text-center lg:text-left space-y-4 w-full">
                   <p className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">{t.lawyer}</p>
                   <p className="text-2xl font-bold text-foreground leading-tight">Joshio Rojas<br/>Moraga</p>
                   <div className="pt-4 border-t space-y-2 text-sm">
@@ -81,7 +81,7 @@ export default function Page() {
               </BlurFade>
 
               <BlurFade delay={BLUR_FADE_DELAY * 3}>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-6">
                   <Link
                     href="#contact"
                     className="inline-flex h-14 items-center justify-center rounded bg-primary px-10 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
@@ -105,7 +105,7 @@ export default function Page() {
 
       {/* SECTION 2: ÜBER MICH */}
       <section id="about" className="py-12 md:py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 space-y-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <div className="space-y-6 max-w-3xl">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{t.aboutTitle}</h2>
@@ -147,7 +147,7 @@ export default function Page() {
 
       {/* SECTION 3: KONTAKT */}
       <section id="contact" className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 space-y-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 8}>
             <div className="space-y-6 max-w-3xl">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{t.contactTitle}</h2>
@@ -241,7 +241,7 @@ export default function Page() {
 
       {/* SECTION 4: WIE GEHT ES WEITER */}
       <section id="next-steps" className="py-12 md:py-16 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 space-y-16">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="space-y-6">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Wie geht es weiter</h2>
@@ -285,7 +285,7 @@ export default function Page() {
 
       {/* SECTION 5: FOOTER */}
       <footer className="py-12 md:py-16 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-6 md:px-8">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
               {/* Impressum */}
