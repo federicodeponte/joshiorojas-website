@@ -25,12 +25,13 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY}>
               <div className="flex flex-col items-center lg:items-start gap-6 lg:sticky lg:top-8">
                 <div className="relative">
-                  <div className="relative size-64 lg:size-72 border-2 rounded-full shadow-2xl ring-1 ring-primary/10 overflow-hidden">
+                  <div className="relative size-64 lg:size-72 rounded-full overflow-hidden">
+                    <div className="absolute inset-0 border-2 rounded-full shadow-2xl ring-1 ring-primary/10 pointer-events-none z-10"></div>
                     <Image
                       src={DATA.avatarUrl}
                       alt="Joshio Rojas Moraga - Rechtsanwalt Hamburg"
-                      width={288}
-                      height={288}
+                      fill
+                      sizes="(max-width: 1024px) 256px, 288px"
                       className="object-cover"
                       priority
                     />

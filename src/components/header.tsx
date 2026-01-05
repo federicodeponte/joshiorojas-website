@@ -32,26 +32,35 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
   const t = translations[lang];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["hero", "about", "areas", "contact"];
-      const scrollPosition = window.scrollY + 100; // Offset for header height
+    let timeoutId: NodeJS.Timeout;
 
-      for (const sectionId of sections) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          const { offsetTop, offsetHeight } = section;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
+    const handleScroll = () => {
+      // Debounce scroll events for better performance
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const sections = ["hero", "about", "contact"]; // Fixed: removed nested "areas"
+        const scrollPosition = window.scrollY + 100;
+
+        for (const sectionId of sections) {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            const { offsetTop, offsetHeight } = section;
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(sectionId);
+              break;
+            }
           }
         }
-      }
+      }, 50); // 50ms debounce prevents excessive re-renders
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -89,7 +98,7 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
             <button
               onClick={() => scrollToSection("areas")}
               className={`text-sm font-medium transition-colors ${
-                activeSection === "areas"
+                activeSection === "about" // areas is within about section
                   ? "text-primary font-semibold"
                   : "text-muted-foreground hover:text-primary"
               }`}
@@ -149,13 +158,8 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
         </div>
 
         {/* Mobile Menu */}
-        <nav
-          className={`md:hidden border-t py-4 space-y-4 transition-all duration-300 ease-in-out ${
-            mobileMenuOpen
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden py-0"
-          }`}
-        >
+        {mobileMenuOpen && (
+          <nav className="md:hidden border-t py-4 space-y-4 animate-in slide-in-from-top-2 duration-300">
             <button
               onClick={() => scrollToSection("about")}
               className="block w-full text-left text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -208,6 +212,7 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
               </div>
             </div>
           </nav>
+        )}
       </div>
     </header>
   );
