@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { PageWrapper } from "@/components/page-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -117,9 +118,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="mx-auto min-h-screen max-w-5xl px-6 py-12 sm:py-24 md:py-32">
-          {children}
-        </div>
+        <PageWrapper>{children}</PageWrapper>
       </body>
     </html>
   );

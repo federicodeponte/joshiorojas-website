@@ -1,12 +1,19 @@
+"use client";
+
 import BlurFade from "@/components/magicui/blur-fade";
 import { ContactForm } from "@/components/contact-form";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { DATA } from "@/data/resume";
+import { useLanguage } from "@/contexts/language-context";
+import { translations } from "@/lib/translations";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
   return (
     <main className="flex flex-col min-h-[100dvh]">
       {/* SECTION 1: HERO */}
@@ -26,7 +33,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="text-center lg:text-left space-y-3 w-full">
-                  <p className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">Rechtsanwalt</p>
+                  <p className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">{t.lawyer}</p>
                   <p className="text-2xl font-bold text-foreground leading-tight">Joshio Rojas<br/>Moraga</p>
                   <div className="pt-4 border-t space-y-2 text-sm">
                     <p className="flex items-center gap-2 justify-center lg:justify-start">
@@ -55,11 +62,12 @@ export default function Page() {
               <BlurFade delay={BLUR_FADE_DELAY * 2}>
                 <div className="space-y-8">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.05]">
-                    Klar im Recht.<br/>
-                    Klar bei den Kosten.
+                    {t.title.split('\n').map((line, i) => (
+                      <span key={i}>{line}{i === 0 && <br />}</span>
+                    ))}
                   </h1>
                   <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
-                    Individuelle Rechtsberatung mit klarem Fokus auf Ihr angestrebtes Ziel.
+                    {t.subtitle}
                   </p>
                 </div>
               </BlurFade>
@@ -70,13 +78,13 @@ export default function Page() {
                     href="#contact"
                     className="inline-flex h-14 items-center justify-center rounded bg-primary px-10 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
                   >
-                    Kontakt aufnehmen
+                    {t.contactButton}
                   </Link>
                   <Link
                     href="#about"
                     className="inline-flex h-14 items-center justify-center rounded border-2 border-input bg-background px-10 text-base font-semibold hover:bg-accent hover:border-primary/30 transition-all"
                   >
-                    Mehr erfahren
+                    {t.learnMoreButton}
                   </Link>
                 </div>
               </BlurFade>
@@ -92,27 +100,19 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <div className="space-y-6 max-w-3xl">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Über mich</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{t.aboutTitle}</h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                Langjährige Erfahrung in der außergerichtlichen und gerichtlichen Vertretung nationaler und internationaler Unternehmen sowie von Privatmandanten.
+                {t.aboutDescription}
               </p>
             </div>
           </BlurFade>
 
           {/* Tätigkeitsschwerpunkte */}
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
-            <div className="space-y-10">
-              <h3 className="text-3xl md:text-4xl font-bold tracking-tight">Tätigkeitsschwerpunkte</h3>
+            <div id="areas" className="space-y-10">
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight">{t.areasTitle}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  "Vertragsrecht DE/EN",
-                  "Maritimes Wirtschaftsrecht",
-                  "Versicherungsrecht",
-                  "Schiedsverfahren",
-                  "Mietrecht",
-                  "AGB-Prüfung und -Gestaltung",
-                  "Verwaltungsrecht"
-                ].map((item, idx) => (
+                {t.areas.map((item, idx) => (
                   <div
                     key={idx}
                     className="group relative p-6 rounded border-2 bg-card hover:border-primary/50 hover:shadow-md transition-all"
@@ -128,7 +128,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <div className="max-w-4xl p-10 bg-card border-l-4 border-primary shadow-sm">
               <p className="text-xl md:text-2xl font-medium leading-relaxed text-foreground/90">
-                Klare Einschätzung, transparente Kommunikation und konsequente Vertretung, wenn der Verfahrensweg sinnvoll ist.
+                {t.quote}
               </p>
             </div>
           </BlurFade>
@@ -142,9 +142,9 @@ export default function Page() {
         <div className="max-w-7xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 8}>
             <div className="space-y-6 max-w-3xl">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Kontakt</h2>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{t.contactTitle}</h2>
               <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                Kontaktieren Sie mich jederzeit gerne. Wählen Sie den für Sie passenden Weg.
+                {t.contactDescription}
               </p>
             </div>
           </BlurFade>
