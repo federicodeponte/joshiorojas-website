@@ -18,9 +18,9 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh]">
       {/* SECTION 1: HERO */}
-      <section id="hero" className="py-16 md:py-24 lg:py-32">
+      <section id="hero" className="py-8 md:py-12 lg:py-16">
         <div className="mx-auto w-full max-w-7xl px-4">
-          <div className="grid lg:grid-cols-[300px_1fr] gap-12 lg:gap-20 items-center">
+          <div className="grid lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-center">
             {/* Profile Section */}
             <BlurFade delay={BLUR_FADE_DELAY}>
               <div className="flex flex-col items-center lg:items-start gap-6 lg:sticky lg:top-8">
@@ -104,7 +104,7 @@ export default function Page() {
       <div className="border-t"></div>
 
       {/* SECTION 2: ÜBER MICH */}
-      <section id="about" className="py-20 md:py-32 bg-muted/30">
+      <section id="about" className="py-12 md:py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <div className="space-y-6 max-w-3xl">
@@ -146,7 +146,7 @@ export default function Page() {
       <div className="border-t"></div>
 
       {/* SECTION 3: KONTAKT */}
-      <section id="contact" className="py-20 md:py-32">
+      <section id="contact" className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 8}>
             <div className="space-y-6 max-w-3xl">
@@ -240,7 +240,7 @@ export default function Page() {
       <div className="border-t"></div>
 
       {/* SECTION 4: WIE GEHT ES WEITER */}
-      <section id="next-steps" className="py-20 md:py-32 bg-muted/30">
+      <section id="next-steps" className="py-12 md:py-16 bg-muted/30">
         <div className="max-w-5xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="space-y-6">
@@ -284,7 +284,7 @@ export default function Page() {
       <div className="border-t"></div>
 
       {/* SECTION 5: FOOTER */}
-      <footer className="py-20 md:py-24 bg-card">
+      <footer className="py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">

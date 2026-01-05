@@ -10,9 +10,7 @@ function PageContent({ children }: { children: ReactNode }) {
   return (
     <>
       <Header lang={lang} onLanguageChange={setLang} />
-      <div className="mx-auto min-h-screen max-w-5xl px-6 py-12 sm:py-16">
-        {children}
-      </div>
+      {children}
     </>
   );
 }
