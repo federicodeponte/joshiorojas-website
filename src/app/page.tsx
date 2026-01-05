@@ -18,12 +18,12 @@ export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh]">
       {/* SECTION 1: HERO */}
-      <section id="hero" className="py-8 md:py-12 lg:py-16">
+      <section id="hero" className="py-6 md:py-8 lg:py-10">
         <div className="mx-auto max-w-7xl px-6 md:px-8">
           <div className="grid lg:grid-cols-[380px_1fr] gap-10 lg:gap-16 items-center">
             {/* Profile Section */}
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="flex flex-col items-center lg:items-start gap-6 lg:sticky lg:top-8">
+              <div className="flex flex-col items-center lg:items-start gap-4 lg:sticky lg:top-8">
                 <div className="relative">
                   <div className="relative size-64 lg:size-72 rounded-full overflow-hidden">
                     <div className="absolute inset-0 border-2 rounded-full shadow-2xl ring-1 ring-primary/10 pointer-events-none z-10"></div>
@@ -36,12 +36,9 @@ export default function Page() {
                       priority
                     />
                   </div>
-                  <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground px-4 py-2 rounded shadow-lg">
-                    <p className="text-xs font-bold uppercase tracking-wider">Hamburg</p>
-                  </div>
                 </div>
-                <div className="text-center lg:text-left space-y-4 w-full">
-                  <p className="text-sm uppercase tracking-widest text-muted-foreground font-semibold">{t.lawyer}</p>
+                <div className="text-center lg:text-left space-y-2 w-full">
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">{t.lawyer} · Hamburg</p>
                   <p className="text-2xl font-bold text-foreground leading-tight">Joshio Rojas<br/>Moraga</p>
                   <div className="pt-4 border-t space-y-2 text-sm">
                     <p className="flex items-center gap-2 justify-center lg:justify-start">
@@ -66,7 +63,7 @@ export default function Page() {
             </BlurFade>
 
             {/* Main Content */}
-            <div className="flex-1 space-y-12">
+            <div className="flex-1 space-y-8">
               <BlurFade delay={BLUR_FADE_DELAY * 2}>
                 <div className="space-y-8">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.05]">
@@ -74,7 +71,7 @@ export default function Page() {
                       <span key={i}>{line}{i === 0 && <br />}</span>
                     ))}
                   </h1>
-                  <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl">
+                  <p className="text-lg md:text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-3xl">
                     {t.subtitle}
                   </p>
                 </div>
@@ -84,13 +81,13 @@ export default function Page() {
                 <div className="flex flex-wrap gap-6">
                   <Link
                     href="#contact"
-                    className="inline-flex h-14 items-center justify-center rounded bg-primary px-10 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
+                    className="inline-flex h-16 items-center justify-center rounded-lg bg-primary px-12 text-lg font-bold text-primary-foreground hover:bg-primary/90 transition-all shadow-xl hover:shadow-2xl hover:scale-105"
                   >
                     {t.contactButton}
                   </Link>
                   <Link
                     href="#about"
-                    className="inline-flex h-14 items-center justify-center rounded border-2 border-input bg-background px-10 text-base font-semibold hover:bg-accent hover:border-primary/30 transition-all"
+                    className="inline-flex h-14 items-center justify-center rounded-lg border-2 border-input bg-background px-10 text-base font-semibold hover:bg-accent hover:border-primary/30 transition-all"
                   >
                     {t.learnMoreButton}
                   </Link>
