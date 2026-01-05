@@ -24,6 +24,21 @@ export function ContactForm() {
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
 
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate required fields
+    if (!mandantType || !anliegen || !name) {
+      setError("Bitte füllen Sie alle Pflichtfelder aus.");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const emailData = new FormData();
       emailData.append("Mandant", mandantType);
@@ -33,17 +48,23 @@ export function ContactForm() {
       emailData.append("_subject", "📩 Neue Kontaktanfrage von " + name);
       emailData.append("_template", "table");
       emailData.append("_captcha", "false");
+      emailData.append("_honey", ""); // Honeypot for spam protection
 
-      await fetch("https://formsubmit.co/jrm@jrmlegal.de", {
+      const response = await fetch("https://formsubmit.co/jrm@jrmlegal.de", {
         method: "POST",
         body: emailData,
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       setIsSuccess(true);
       form.reset();
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
-      setError("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+      console.error("Form submission error:", err);
+      setError("Fehler beim Senden. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.");
     } finally {
       setIsSubmitting(false);
     }
