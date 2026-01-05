@@ -19,7 +19,7 @@ export default function Page() {
     <main className="flex flex-col min-h-[100dvh]">
       {/* SECTION 1: HERO */}
       <section id="hero" className="py-8 md:py-12 lg:py-16">
-        <div className="mx-auto w-full max-w-7xl px-4">
+        <div className="mx-auto max-w-7xl px-4">
           <div className="grid lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-center">
             {/* Profile Section */}
             <BlurFade delay={BLUR_FADE_DELAY}>
@@ -241,7 +241,7 @@ export default function Page() {
 
       {/* SECTION 4: WIE GEHT ES WEITER */}
       <section id="next-steps" className="py-12 md:py-16 bg-muted/30">
-        <div className="max-w-5xl mx-auto px-4 space-y-16">
+        <div className="max-w-7xl mx-auto px-4 space-y-16">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="space-y-6">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">Wie geht es weiter</h2>
