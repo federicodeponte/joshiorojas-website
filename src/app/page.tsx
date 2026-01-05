@@ -15,14 +15,14 @@ export default function Page() {
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
             {/* Profilbild mit Name */}
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <div className="flex flex-col items-center gap-4">
-                <Avatar className="size-40 border-4 border-primary/20">
+              <div className="flex flex-col items-center gap-5">
+                <Avatar className="size-52 border-4 border-primary/30 shadow-2xl ring-4 ring-primary/10">
                   <AvatarImage alt="Joshio Rojas Moraga" src={DATA.avatarUrl} />
-                  <AvatarFallback>JRM</AvatarFallback>
+                  <AvatarFallback className="text-3xl">JRM</AvatarFallback>
                 </Avatar>
-                <div className="text-center space-y-1">
-                  <p className="text-sm font-medium text-muted-foreground">Rechtsanwalt</p>
-                  <p className="font-semibold text-foreground">Joshio Rojas Moraga</p>
+                <div className="text-center space-y-2">
+                  <p className="text-sm font-semibold text-primary uppercase tracking-wider">Rechtsanwalt</p>
+                  <p className="text-lg font-bold text-foreground">Joshio Rojas Moraga</p>
                 </div>
               </div>
             </BlurFade>
@@ -89,10 +89,12 @@ export default function Page() {
                   ].map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-3 p-4 rounded-lg border bg-card hover:shadow-md transition-all"
+                      className="flex items-center gap-3 p-5 rounded-xl border bg-card shadow-sm hover:shadow-lg hover:scale-105 hover:border-primary/30 transition-all duration-300 cursor-default"
                     >
-                      <span className="text-2xl">{item.icon}</span>
-                      <span className="font-medium">{item.title}</span>
+                      <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">{item.icon}</span>
+                      </div>
+                      <span className="font-semibold text-sm leading-tight">{item.title}</span>
                     </div>
                   ))}
                 </div>
@@ -100,9 +102,11 @@ export default function Page() {
             </BlurFade>
 
             <BlurFade delay={BLUR_FADE_DELAY * 8}>
-              <p className="text-lg text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto mt-8 p-6 bg-primary/5 rounded-lg border border-primary/10">
-                Klare Einschätzung, transparente Kommunikation und konsequente Vertretung, wenn der Verfahrensweg sinnvoll ist.
-              </p>
+              <div className="text-center max-w-3xl mx-auto mt-12 p-8 bg-gradient-to-br from-primary/10 to-primary/5 rounded-2xl border-2 border-primary/20 shadow-lg">
+                <p className="text-xl font-semibold text-foreground leading-relaxed">
+                  Klare Einschätzung, transparente Kommunikation und konsequente Vertretung, wenn der Verfahrensweg sinnvoll ist.
+                </p>
+              </div>
             </BlurFade>
           </div>
         </div>
@@ -124,50 +128,56 @@ export default function Page() {
             <div className="grid md:grid-cols-2 gap-6 mt-6">
               {/* Kontaktformular */}
               <BlurFade delay={BLUR_FADE_DELAY * 10}>
-                <div className="bg-card border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-card border-2 border-primary/20 rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:border-primary/40 transition-all">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl">✉️</span>
+                    <div className="size-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-md">
+                      <span className="text-3xl">✉️</span>
                     </div>
-                    <h3 className="text-xl font-semibold">Per E-Mail</h3>
+                    <h3 className="text-2xl font-bold text-primary">Per E-Mail</h3>
                   </div>
                   <ContactForm />
-                  <p className="text-sm text-muted-foreground mt-6 p-4 bg-muted/50 rounded-lg">
-                    💡 Bitte schildern Sie Ihr Anliegen kurz. Ich melde mich zeitnah zurück.
-                  </p>
+                  <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border border-blue-200 dark:border-blue-800/30">
+                    <p className="text-sm text-blue-900 dark:text-blue-100 flex items-start gap-2">
+                      <span className="text-lg">💡</span>
+                      <span>Bitte schildern Sie Ihr Anliegen kurz. Ich melde mich zeitnah zurück.</span>
+                    </p>
+                  </div>
                 </div>
               </BlurFade>
 
               {/* Telefonischer Kontakt */}
               <BlurFade delay={BLUR_FADE_DELAY * 11}>
-                <div className="bg-card border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-card border-2 border-primary/20 rounded-2xl p-8 shadow-xl hover:shadow-2xl hover:border-primary/40 transition-all">
                   <div className="flex items-center gap-3 mb-6">
-                    <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl">📞</span>
+                    <div className="size-14 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center shadow-md">
+                      <span className="text-3xl">📞</span>
                     </div>
-                    <h3 className="text-xl font-semibold">Telefonisch</h3>
+                    <h3 className="text-2xl font-bold text-primary">Telefonisch</h3>
                   </div>
                   <div className="space-y-6">
-                    <div>
-                      <p className="text-sm text-muted-foreground mb-3">Rufen Sie mich direkt an:</p>
+                    <div className="bg-primary/5 p-5 rounded-xl border border-primary/20">
+                      <p className="text-sm font-semibold text-muted-foreground mb-3">Rufen Sie mich direkt an:</p>
                       <a
                         href="tel:+491777983780"
-                        className="text-2xl font-bold text-primary hover:underline block"
+                        className="text-3xl font-bold text-primary hover:text-primary/80 transition-colors block"
                       >
                         +49 177 7983780
                       </a>
                     </div>
-                    <div className="pt-4 border-t">
+                    <div className="pt-2">
                       <Link
                         href="mailto:jrm@jrmlegal.de?subject=Rückruf%20gewünscht"
-                        className="inline-flex w-full h-11 items-center justify-center rounded-md border-2 border-primary bg-background px-6 text-base font-medium hover:bg-primary hover:text-primary-foreground transition-all"
+                        className="inline-flex w-full h-12 items-center justify-center rounded-xl border-2 border-primary bg-primary/5 px-6 text-base font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-all shadow-sm hover:shadow-md"
                       >
                         📧 Rückruf anfordern
                       </Link>
                     </div>
-                    <p className="text-sm text-muted-foreground p-4 bg-muted/50 rounded-lg">
-                      ⏱️ Sollte ich telefonisch nicht erreichbar sein, melde ich mich in der Regel innerhalb von 24 Stunden zurück.
-                    </p>
+                    <div className="p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border border-blue-200 dark:border-blue-800/30">
+                      <p className="text-sm text-blue-900 dark:text-blue-100 flex items-start gap-2">
+                        <span className="text-lg">⏱️</span>
+                        <span>Sollte ich telefonisch nicht erreichbar sein, melde ich mich in der Regel innerhalb von 24 Stunden zurück.</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </BlurFade>
@@ -188,16 +198,20 @@ export default function Page() {
                 <p className="text-lg">
                   Nach Ihrer Kontaktaufnahme erhalten Sie eine Rückmeldung mit einer <strong className="text-foreground">informellen Vorabbewertung</strong> Ihres Anliegens. Dabei erhalten Sie eine erste Einschätzung zu Vorgehen, Chancen und Risiken.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-8">
-                  <div className="p-6 bg-card rounded-lg border">
-                    <div className="text-3xl mb-3">✓</div>
-                    <p className="font-medium text-foreground mb-2">Kostenfreie Ersteinschätzung</p>
-                    <p className="text-sm">Diese Vorabbewertung dient der Orientierung und stellt noch keine Rechtsberatung dar. Kosten entstehen hierdurch nicht.</p>
+                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                  <div className="p-8 bg-card rounded-2xl border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all">
+                    <div className="size-16 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center mb-4 shadow-md">
+                      <span className="text-4xl">✓</span>
+                    </div>
+                    <p className="text-lg font-bold text-foreground mb-3">Kostenfreie Ersteinschätzung</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">Diese Vorabbewertung dient der Orientierung und stellt noch keine Rechtsberatung dar. Kosten entstehen hierdurch nicht.</p>
                   </div>
-                  <div className="p-6 bg-card rounded-lg border">
-                    <div className="text-3xl mb-3">🤝</div>
-                    <p className="font-medium text-foreground mb-2">Transparente Beauftragung</p>
-                    <p className="text-sm">Eine kostenpflichtige Beratung erfolgt erst nach ausdrücklicher Beauftragung.</p>
+                  <div className="p-8 bg-card rounded-2xl border-2 border-primary/20 shadow-lg hover:shadow-xl transition-all">
+                    <div className="size-16 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mb-4 shadow-md">
+                      <span className="text-4xl">🤝</span>
+                    </div>
+                    <p className="text-lg font-bold text-foreground mb-3">Transparente Beauftragung</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">Eine kostenpflichtige Beratung erfolgt erst nach ausdrücklicher Beauftragung.</p>
                   </div>
                 </div>
               </div>
