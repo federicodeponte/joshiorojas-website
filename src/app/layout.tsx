@@ -4,21 +4,28 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// Use environment variable for production URL, fallback to Vercel URL
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://joshiorojas-website.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Joshio Rojas Moraga - Rechtsanwalt Hamburg",
   description: "Klar im Recht. Klar bei den Kosten. Individuelle Rechtsberatung mit Fokus auf Ihr Ziel.",
   keywords: ["Rechtsanwalt", "Hamburg", "Vertragsrecht", "Maritimes Wirtschaftsrecht", "Versicherungsrecht"],
   authors: [{ name: "Joshio Rojas Moraga" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "de_DE",
-    url: "https://joshiorojas-website.vercel.app",
+    url: siteUrl,
     title: "Joshio Rojas Moraga - Rechtsanwalt Hamburg",
     description: "Klar im Recht. Klar bei den Kosten. Individuelle Rechtsberatung mit klarem Fokus auf Ihr angestrebtes Ziel.",
     siteName: "Joshio Rojas Moraga",
     images: [
       {
-        url: "https://joshiorojas-website.vercel.app/avatar.jpg",
+        url: "/avatar.jpg",
         width: 400,
         height: 400,
         alt: "Joshio Rojas Moraga - Rechtsanwalt",
@@ -29,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Joshio Rojas Moraga - Rechtsanwalt Hamburg",
     description: "Klar im Recht. Klar bei den Kosten. Individuelle Rechtsberatung mit Fokus auf Ihr Ziel.",
-    images: ["https://joshiorojas-website.vercel.app/avatar.jpg"],
+    images: ["/avatar.jpg"],
   },
   robots: {
     index: true,
@@ -44,13 +51,13 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
+const getJsonLd = (baseUrl: string) => ({
   "@context": "https://schema.org",
   "@type": "Attorney",
   name: "Joshio Rojas Moraga",
-  image: "https://joshiorojas-website.vercel.app/avatar.jpg",
-  "@id": "https://joshiorojas-website.vercel.app",
-  url: "https://joshiorojas-website.vercel.app",
+  image: `${baseUrl}/avatar.jpg`,
+  "@id": baseUrl,
+  url: baseUrl,
   telephone: "+49-177-7983780",
   email: "jrm@jrmlegal.de",
   address: {
@@ -92,13 +99,15 @@ const jsonLd = {
     "AGB-Prüfung und -Gestaltung",
     "Verwaltungsrecht"
   ]
-};
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = getJsonLd(siteUrl);
+
   return (
     <html lang="de">
       <head>
