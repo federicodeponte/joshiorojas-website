@@ -4,6 +4,7 @@ import BlurFade from "@/components/magicui/blur-fade";
 import { ContactForm } from "@/components/contact-form";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
+import Image from "next/image";
 import { DATA } from "@/data/resume";
 import { useLanguage } from "@/contexts/language-context";
 import { translations } from "@/lib/translations";
@@ -24,10 +25,16 @@ export default function Page() {
             <BlurFade delay={BLUR_FADE_DELAY}>
               <div className="flex flex-col items-center lg:items-start gap-6 lg:sticky lg:top-8">
                 <div className="relative">
-                  <Avatar className="size-64 lg:size-72 border-2 shadow-2xl ring-1 ring-primary/10">
-                    <AvatarImage alt="Joshio Rojas Moraga" src={DATA.avatarUrl} className="object-cover" />
-                    <AvatarFallback className="text-5xl font-bold">JRM</AvatarFallback>
-                  </Avatar>
+                  <div className="relative size-64 lg:size-72 border-2 rounded-full shadow-2xl ring-1 ring-primary/10 overflow-hidden">
+                    <Image
+                      src={DATA.avatarUrl}
+                      alt="Joshio Rojas Moraga - Rechtsanwalt Hamburg"
+                      width={288}
+                      height={288}
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
                   <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground px-4 py-2 rounded shadow-lg">
                     <p className="text-xs font-bold uppercase tracking-wider">Hamburg</p>
                   </div>
@@ -111,7 +118,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <div id="areas" className="space-y-10">
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight">{t.areasTitle}</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {t.areas.map((item, idx) => (
                   <div
                     key={idx}

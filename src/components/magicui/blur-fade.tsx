@@ -9,12 +9,14 @@ interface BlurFadeProps {
 }
 
 export default function BlurFade({ children, delay = 0, className = "" }: BlurFadeProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Start visible for better UX
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Small delay to allow DOM to render, then animate
     const timer = setTimeout(() => {
-      setIsVisible(true);
+      setHasAnimated(true);
     }, delay * 1000);
 
     return () => clearTimeout(timer);
@@ -24,7 +26,7 @@ export default function BlurFade({ children, delay = 0, className = "" }: BlurFa
     <div
       ref={ref}
       className={`transition-all duration-700 ${
-        isVisible ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-sm translate-y-4"
+        hasAnimated ? "opacity-100 blur-0 translate-y-0" : "opacity-100 blur-0 translate-y-2"
       } ${className}`}
     >
       {children}

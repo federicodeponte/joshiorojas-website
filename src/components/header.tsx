@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 
@@ -28,7 +28,31 @@ const translations = {
 
 export function Header({ lang, onLanguageChange }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const t = translations[lang];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["hero", "about", "areas", "contact"];
+      const scrollPosition = window.scrollY + 100; // Offset for header height
+
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const { offsetTop, offsetHeight } = section;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -54,19 +78,31 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
           <nav className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === "about"
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {t.about}
             </button>
             <button
               onClick={() => scrollToSection("areas")}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === "areas"
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {t.areas}
             </button>
             <button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === "contact"
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
             >
               {t.contact}
             </button>
@@ -113,8 +149,13 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <nav className="md:hidden border-t py-4 space-y-4">
+        <nav
+          className={`md:hidden border-t py-4 space-y-4 transition-all duration-300 ease-in-out ${
+            mobileMenuOpen
+              ? "max-h-96 opacity-100"
+              : "max-h-0 opacity-0 overflow-hidden py-0"
+          }`}
+        >
             <button
               onClick={() => scrollToSection("about")}
               className="block w-full text-left text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
@@ -167,7 +208,6 @@ export function Header({ lang, onLanguageChange }: HeaderProps) {
               </div>
             </div>
           </nav>
-        )}
       </div>
     </header>
   );
